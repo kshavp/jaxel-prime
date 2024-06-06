@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import SubmitBtn from "../components/SubmitBtn";
 import axios from "axios";
+import DragDrop from "../components/DragDrop";
 
 const ToJSON = () => {
   const [dataFile, setDataFile] = useState(null);
+  // const [toastInfo, setToastInfo] = useState()
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.table(dataFile);
+    if(!dataFile){
+      //Add Toast
+      return;
+    }
     if (dataFile) {
       //Axios se Send to Server
       const formData = new FormData();
-      formData.append("file",dataFile);
+      formData.append("file", dataFile);
       console.log(formData);
       axios
         .post("http://localhost:3000/tojson", formData, {
@@ -30,23 +35,24 @@ const ToJSON = () => {
 
   const inputHandler = (e) => {
     const file = e.target.files[0];
-    
+
     setDataFile(file);
   };
 
   return (
     <div className="p-8 bg-neutral-800 text-neutral-300 h-screen">
+      <h1 className='text-center text-5xl my-6 font-bold 
+      bg-gradient-to-r from-amber-200 to-yellow-500 bg-clip-text text-transparent'>CSV to JSON</h1>
       <form
         action=""
         className="flex flex-col mx-auto"
         onSubmit={submitHandler}
       >
-        <input
-          type="file"
-          name="csvfilename"
-          accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
-          onChange={(e) => inputHandler(e)}
-        />
+        <DragDrop onChange={(e) => inputHandler(e)} />
+        <h1 className='text-center text-5xl font-bold relative bottom-40'>
+          <span className="hidden md:block"> Drag and Drop File 📃</span>
+          <span className="block md:hidden"> Tap Here to Upload 📃</span>
+        </h1>
         <SubmitBtn />
       </form>
     </div>
