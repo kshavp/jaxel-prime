@@ -10,7 +10,7 @@ const ToCSV = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    toast.error("Servers are offline now:(", {
+    toast.warn("Servers unavailable 🗿", {
       position: "bottom-right",
       autoClose: 3000,
       theme: "dark",
