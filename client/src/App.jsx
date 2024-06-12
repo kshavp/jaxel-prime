@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import ToJSON from './pages/ToJSON';
 import ToCSV from './pages/ToCSV';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path='/jsontocsv' element={<ToCSV />} />
         <Route path='/csvtojson' element={<ToJSON />} />
       </Routes>
+      <Footer />
     </div>
     
     </div>

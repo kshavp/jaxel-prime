@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SubmitBtn from "../components/SubmitBtn";
 import axios from "axios";
 import DragDrop from "../components/DragDrop";
+import { motion } from "framer-motion";
 
 const ToJSON = () => {
   const [dataFile, setDataFile] = useState(null);
@@ -43,7 +44,11 @@ const ToJSON = () => {
     <div className="p-8 bg-neutral-800 text-neutral-300 h-screen">
       <h1 className='text-center text-5xl my-6 font-bold 
       bg-gradient-to-r from-amber-200 to-yellow-500 bg-clip-text text-transparent'>CSV to JSON</h1>
-      <form
+      <motion.form
+        initial={{opacity:0, x:-100}}
+        transition={{duration:1}}
+        animate={{opacity:1, x:0}}
+
         action=""
         className="flex flex-col mx-auto"
         onSubmit={submitHandler}
@@ -54,7 +59,7 @@ const ToJSON = () => {
           <span className="block md:hidden"> Tap Here to Upload 📃</span>
         </h1>
         <SubmitBtn />
-      </form>
+      </motion.form>
     </div>
   );
 };

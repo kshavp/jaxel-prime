@@ -3,17 +3,21 @@ import Hero from "../components/Home/Hero";
 import Features from "../components/Home/Features";
 import Pricing from "../components/Home/Pricing";
 import Contact from "../components/Home/Contact";
-import Footer from "../components/Home/Footer";
+import { motion } from "framer-motion";
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
+    <motion.div 
+    className="min-h-screen bg-gray-50 flex flex-col font-sans"
+    initial={{opacity:0, y:100}}
+    transition={{ duration: 1 }}
+    animate={{opacity:1, y:0}}
+    >
       <Hero />
       <Features />
       <Pricing />
       <Contact />
-      <Footer />
-    </div>
+    </motion.div>
   );
 };
 
