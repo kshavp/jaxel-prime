@@ -3,7 +3,7 @@ import SubmitBtn from "../components/SubmitBtn";
 import axios from "axios";
 import DragDrop from "../components/DragDrop";
 import { motion } from "framer-motion";
-import { ToastContainer, toast } from 'react-toastify';
+import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ToJSON = () => {
@@ -12,6 +12,12 @@ const ToJSON = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    toast.error("Servers are offline now:(", {
+      position: "bottom-right",
+      autoClose: 3000,
+      theme: "dark",
+      transition: Slide,
+    });
     if(!dataFile){
       //Add Toast
       return;
@@ -21,18 +27,18 @@ const ToJSON = () => {
       const formData = new FormData();
       formData.append("file", dataFile);
       console.log(formData);
-      axios
-        .post("http://localhost:3000/tojson", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      // axios
+      //   .post("http://localhost:3000/tojson", formData, {
+      //     headers: {
+      //       "Content-Type": "multipart/form-data",
+      //     },
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
     }
   };
 
@@ -45,6 +51,7 @@ const ToJSON = () => {
     <div className="p-8 bg-neutral-800 text-neutral-300 h-screen">
       <h1 className='text-center text-5xl my-6 font-bold 
       bg-gradient-to-r from-amber-200 to-yellow-500 bg-clip-text text-transparent'>CSV to JSON</h1>
+      <ToastContainer />
       <motion.form
         initial={{opacity:0, x:-100}}
         transition={{duration:1}}
