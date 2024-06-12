@@ -3,6 +3,8 @@ import SubmitBtn from "../components/SubmitBtn";
 import axios from "axios";
 import DragDrop from "../components/DragDrop";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ToJSON = () => {
   const [dataFile, setDataFile] = useState(null);
@@ -36,7 +38,6 @@ const ToJSON = () => {
 
   const inputHandler = (e) => {
     const file = e.target.files[0];
-
     setDataFile(file);
   };
 

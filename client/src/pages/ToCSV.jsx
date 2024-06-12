@@ -2,15 +2,20 @@ import React, { useState } from "react";
 import SubmitBtn from "../components/SubmitBtn";
 import DragDrop from "../components/DragDrop";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ToCSV = () => {
   const [dataFile, setDataFile] = useState(null);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.table(dataFile);
+    const file = e.target.files[0];
+    setDataFile(file);
     if (dataFile) {
       //Axios se Send to Server
+      console.log(dataFile);
+      toast("Coming Soon");
     }
   };
 
@@ -21,6 +26,7 @@ const ToCSV = () => {
     <div className="p-8 w-full bg-neutral-800 text-neutral-300 h-screen">
       <h1 className='text-center text-5xl my-6 font-bold 
       bg-gradient-to-r from-yellow-200 to-green-600 bg-clip-text text-transparent'>JSON to CSV</h1>
+      <ToastContainer />
       <motion.form
         initial={{opacity:0, x:-100}}
         transition={{duration:1}}
